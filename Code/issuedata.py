@@ -42,17 +42,14 @@ json_writer("mentions", json_object)
 #api url to grab created
 creator_url = f"https://api.github.com/repos/{owner_name}/{repo_name}/issues?creator={mentee_username}"
 # Writing created to .json
-json_object = json_responses(issue_url)
-json_writer("creator", json_object)
+json_object2 = json_responses(creator_url)
+json_writer("creator", json_object2)
     
 # read all the issue numbers into a list
 issue_nums = []
-
-issue_nums.append()
 
 # get all the comments data into json files
 for num in issue_nums:
     comments_url = f"https://api.github.com/repos/{owner_name}/{repo_name}/issues/{num}/comments"
     json_object = json_responses(comments_url)
-    with open(f"/Users/jasminemishra/Desktop/{num}comments.json", "w") as outfile:
-        outfile.write(json_object)
+    json_writer(f"{num}comments", json_object)
