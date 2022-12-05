@@ -7,8 +7,7 @@ def json_writer(name, json_object):
 
 # AUTHENTICATION
 username = 'coffeehousejazz'
-token = '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'
-requests.get('https://api.github.com/search/repositories?q=github+api', auth=HTTPBasicAuth(username,token))
+token = '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'
 
 ## input info about project and run !!
 mentee_username  = "theabhirath"
@@ -21,7 +20,7 @@ repo_name = "Metalhead.jl"
 mentee_url = f"https://api.github.com/users/{mentee_username}"
 # Writing mentee data to .json
 #send get request
-response = requests.get(mentee_url)
+response = requests.get(mentee_url, auth=(username,token))
 #save to object
 data = response.json()
 json_serial = json.dumps(data, indent=4)
@@ -38,7 +37,7 @@ print(type(data))
 mentions_url = f"https://api.github.com/repos/{owner_name}/{repo_name}/issues?mentions={mentee_username}"
 #writing mentions to .json
 #send get request
-response2 = requests.get(mentions_url).text
+response2 = requests.get(mentions_url, auth=(username,token)).text
 #save to object
 data2 = json.loads(response2)
 json_serial = json.dumps(data2, indent=4)
@@ -50,7 +49,7 @@ print(type(data2))
 creator_url = f"https://api.github.com/repos/{owner_name}/{repo_name}/issues?creator={mentee_username}"
 # Writing created to .json
 #send get request
-response3 = requests.get(creator_url).text
+response3 = requests.get(creator_url, auth=(username,token)).text
 #save to object
 data3 = json.loads(response3)
 json_serial = json.dumps(data3, indent=4)
