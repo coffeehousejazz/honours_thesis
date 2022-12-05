@@ -7,7 +7,7 @@ def json_writer(name, json_object):
 
 # AUTHENTICATION
 username = 'coffeehousejazz'
-token = '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'
+token = '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'
 
 ## input info about project and run !!
 mentee_username  = "theabhirath"
@@ -25,7 +25,6 @@ response = requests.get(mentee_url, auth=(username,token))
 data = response.json()
 json_serial = json.dumps(data, indent=4)
 json_writer("mentee", json_serial)
-print(type(data))
     
 #api url to grab mentor user data
 #for i in mentor_usernames:
@@ -42,7 +41,6 @@ response2 = requests.get(mentions_url, auth=(username,token)).text
 data2 = json.loads(response2)
 json_serial = json.dumps(data2, indent=4)
 json_writer("mentions", json_serial)
-print(type(data2))
     
 ### CREATOR ###
 #api url to grab created
@@ -54,16 +52,27 @@ response3 = requests.get(creator_url, auth=(username,token)).text
 data3 = json.loads(response3)
 json_serial = json.dumps(data3, indent=4)
 json_writer("creator", json_serial)
-print(type(data3))
 
 # read all the issue numbers into a list
 issue_nums = []
-for v, k in data.items():
+for v, k in data2.items():
+    print(v)
     if v == "number":
        issue_nums.append(k)
 
+for v, k in data3.items():
+    print(v)
+    if v == "number":
+       issue_nums.append(k)
+       
+issue_nums = list(dict.fromkeys(issue_nums))
+
 # get all the comments data into json files
-# for num in issue_nums:
-#    comments_url = f"https://api.github.com/repos/{owner_name}/{repo_name}/issues/{num}/comments"
-#    json_object = json_responses(comments_url)
-#    json_writer(f"{num}comments", json_object)
+for num in issue_nums:
+   comments_url = f"https://api.github.com/repos/{owner_name}/{repo_name}/issues/{num}/comments"
+   #send get request
+   response4 = requests.get(creator_url, auth=(username,token)).text
+   #save to object
+   data4 = json.loads(response4)
+   json_serial = json.dumps(data4, indent=4)
+   json_writer("creator", json_serial)
