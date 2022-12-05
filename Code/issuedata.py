@@ -6,15 +6,16 @@ table.field_names = ["key", "value"]
 
 github_username  = "khatrivinay1"
 
-#api url to grab public user data
-api_url = f"https://api.github.com/users/{github_username}"
+#api url to grab mentions
+api_url = f"https://api.github.com/repos/FluxML/Metalhead.jl/issues?mentions={github_username}"
 
 #send get request
-
 response = requests.get(api_url)
 
-#get json data in object
-data = response.json()
+# save the json to mongoDB
+
+#look at the data in terminal
+data =  response.json()
 
 # Serializing json
 json_object = json.dumps(data, indent=4)
