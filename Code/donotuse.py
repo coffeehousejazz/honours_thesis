@@ -10,8 +10,8 @@ username = 'coffeehousejazz'
 token = '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'
 
 ## input info about project and run !!
-mentee_username  = "theabhirath"
-#mentor_usernames = ["", ""]
+mentee_username  = "abheesht17"
+mentor_usernames = ["", ""]
 owner_name = "FluxML"
 repo_name = "Metalhead.jl"
 
