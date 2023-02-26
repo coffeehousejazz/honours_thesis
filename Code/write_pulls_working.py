@@ -42,6 +42,8 @@ for x in cur:
         items = json.loads(response2)['items']
         for pr in items:
             pr['mentee'] = username
+            pr['owner_name'] = owner_name
+            pr['repo_name'] = repo_name
             # add the username of the mentee to the pull so that we can identify who is mentioned
             pr_json = json.dumps(pr, indent=4)
             print(pr_json)

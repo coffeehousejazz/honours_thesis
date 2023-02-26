@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from datetime import datetime
 # this code updates the mentees so that they are annotated! :))
 myclient = MongoClient("mongodb+srv://HonourThesis:XZJXwB8NNdHIoxGw@cluster0.no1barz.mongodb.net/test")
-db = myclient["GSoC21"]
+db = myclient["GSoC"]
 for coll in db.list_collection_names():
     Collection = db[coll]
     # prints the first item in the collection

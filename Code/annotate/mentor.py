@@ -1,7 +1,7 @@
 from pymongo import MongoClient
-# this code updates the mentees so that they are annotated! :))
+# this code updates the mentors so that they are annotated! :))
 myclient = MongoClient("mongodb+srv://HonourThesis:XZJXwB8NNdHIoxGw@cluster0.no1barz.mongodb.net/test")
-db = myclient["GSoC21"]
+db = myclient["GSoC"]
 counter = 0
 for coll in db.list_collection_names():
     Collection = db[coll]

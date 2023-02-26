@@ -3,7 +3,7 @@ from datetime import datetime
 counter = 0
 # do it in a for loop to iterate through all of the collections
 myclient = MongoClient("mongodb+srv://HonourThesis:XZJXwB8NNdHIoxGw@cluster0.no1barz.mongodb.net/test")
-db = myclient["GSoC21"]
+db = myclient["GSoC"]
 counter = 0
 count = 0
 for coll in db.list_collection_names():

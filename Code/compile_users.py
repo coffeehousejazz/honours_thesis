@@ -1,9 +1,9 @@
 from pymongo import MongoClient
 # this code compiles all the users(mentors and mentees) together into one collection
 myclient = MongoClient("mongodb+srv://HonourThesis:XZJXwB8NNdHIoxGw@cluster0.no1barz.mongodb.net/test")
-src_db = myclient["GSoC21"]
-dst_db = myclient["GSoC-redesign"]
+src_db = myclient["GSoC"]
 src_col = src_db["Users"]
+dst_db = myclient["GSoC-redesign"]
 dst_collection = dst_db["Users"]
 
 # grab user data (read str)
