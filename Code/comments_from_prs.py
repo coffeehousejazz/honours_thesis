@@ -1,6 +1,6 @@
 import requests, json
 from pymongo import MongoClient
-
+## this code gets the comments from pull requests
 myclient = MongoClient("mongodb+srv://HonourThesis:XZJXwB8NNdHIoxGw@cluster0.no1barz.mongodb.net/test")
 db = myclient["GSoC21"]
 src_col = db["Pulls"]

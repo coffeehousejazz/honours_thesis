@@ -40,12 +40,9 @@ for x in cur:
     response1 = requests.get(pr_url, auth=(me_user,token))
     if response1.status_code == 200:
         items = json.loads(response2)['items']
-        new_list = []
         for pr in items:
             pr_json = json.dumps(pr, indent=4)
-            new_list.append(pr_json)
-        for x in new_list:
-            print(x)
+            print(pr_json)
     else:
         print('Error:', response1.status_code, response1.text)
 # save to object
