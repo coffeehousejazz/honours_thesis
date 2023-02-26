@@ -1,47 +1,48 @@
-import requests, json, pymongo
-from requests.auth import HTTPBasicAuth
+import requests, json
 from pymongo import MongoClient
 
-# input info about project and run !! - make sure to change collection number too below
-mentee_username  = "Madhav2310"
-mentor_usernames = ["certik", "czgdp1807", "HaoZeke"]
-owner_name = "lcompilers"
-repo_name = "lpython"
+# input info about project and run ! change collection number too below
+mentee_username  = "rj-since-2000"
+mentor_usernames = ["harchani-ritik"]
+owner_name = "CCExtractor"
+repo_name = "rutorrent-flutter"
 
 # database
 myclient = MongoClient("mongodb+srv://HonourThesis:XZJXwB8NNdHIoxGw@cluster0.no1barz.mongodb.net/test")
-db = myclient["GSoC"]
-Collection = db["147"]
+db = myclient["GSoC21"]
+Collection = db["109"] # change collection number here
 
+# writes json files - to device
 def json_writer(name, json_object):
     with open(f"/Users/jasminemishra/Desktop/data/responses/{name}.json", "w") as outfile:
         outfile.write(json_object)
     name = name
 
+# writes json files - to mongo
 def mongo_writer(file_data):
-    print("HELLOOO")
+    # for many files
     if isinstance(file_data, list):
         if(len(file_data) > 0):
             Collection.insert_many(file_data)
             print("many")
+    # for one file
     else:
         Collection.insert_one(file_data)
         print("one")
 
-# api AUTHENTICATION
+# API AUTHENTICATION
 username = 'coffeehousejazz'
-token = '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'
+token = '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'
 
 ### USER DATA ###
 #api url to grab mentee user data
 mentee_url = f"https://api.github.com/users/{mentee_username}"
 # Writing mentee data to .json
-#send get request
+# send get request
 response = requests.get(mentee_url, auth=(username,token)).text
-#save to object
+# save to object
 data = json.loads(response)
 json_serial = json.dumps(data, indent=4)
-#json_writer("mentee", json_serial)
 mongo_writer(data)
     
 #api url to grab mentor user data
@@ -81,28 +82,24 @@ json_serial3 = json.dumps(data3, indent=4)
 json_writer("creator", json_serial3)
 mongo_writer(data3)
 
-# read all the issue numbers into a list
+# read all the issue numbers colleced above into a list
 issue_nums = []
 for dic in data2:
     for key in dic:
         if key == "number":
             issue_nums.append(dic[key])
-
 for dic in data3:
     for key in dic:
         if key == "number":
             issue_nums.append(dic[key])
-
 for nums in issue_nums:
     print(nums)
-
 # remove duplicates
 issue_nums = list(dict.fromkeys(issue_nums))
 
 # get all the comments data into json files
 for num in issue_nums:
     # issue number into api url
-    #print(num)
     print("accessed")
     comments_url = f"https://api.github.com/repos/{owner_name}/{repo_name}/issues/{num}/comments"
     #send get request
@@ -111,5 +108,4 @@ for num in issue_nums:
     data4 = json.loads(response4)
     print(data4)
     json_serial = json.dumps(data4, indent=4)
-    #json_writer(f"{num}comments", json_serial)
     mongo_writer(data4)
