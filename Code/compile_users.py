@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-# this file compiles all the users(mentors and mentees) together into one collection
+# this code compiles all the users(mentors and mentees) together into one collection
 myclient = MongoClient("mongodb+srv://HonourThesis:XZJXwB8NNdHIoxGw@cluster0.no1barz.mongodb.net/test")
 src_db = myclient["GSoC21"]
 dst_db = myclient["GSoC-redesign"]

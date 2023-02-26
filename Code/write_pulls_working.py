@@ -1,6 +1,6 @@
 import requests, json
 from pymongo import MongoClient
-# puts the pulls from users in the db
+# this code puts the pulls from users in the db
 myclient = MongoClient("mongodb+srv://HonourThesis:XZJXwB8NNdHIoxGw@cluster0.no1barz.mongodb.net/test")
 db = myclient["GSoC21"]
 src_col = db["Users"]
