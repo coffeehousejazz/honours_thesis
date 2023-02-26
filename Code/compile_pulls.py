@@ -4,12 +4,12 @@ from pymongo import MongoClient
 myclient = MongoClient("mongodb+srv://HonourThesis:XZJXwB8NNdHIoxGw@cluster0.no1barz.mongodb.net/test")
 db = myclient["GSoC21"]
 src_col = db["Users"]
-dst_col = db["Pulls2"]
+dst_col = db["Pulls"]
 # db redesign
 
 # API AUTHENTICATION
 me_user = 'coffeehousejazz'
-token = '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'
+token = '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'
 
 # writes json files - to mongo
 def mongo_writer(file_data):
@@ -46,11 +46,10 @@ for x in cur:
             pr['repo_name'] = repo_name
             # add the username of the mentee to the pull so that we can identify who is mentioned
             pr_json = json.dumps(pr, indent=4)
-            print(pr_json)
             #########################################################
             #### UNCOMMENT BELOW COMMENT WHEN READY to add to db ####
             #########################################################
-            # mongo_writer(pr_json)
+            mongo_writer(pr)
     else:
         print('Error:', response1.status_code, response1.text)
 # save to object
