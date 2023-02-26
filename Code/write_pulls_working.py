@@ -41,8 +41,14 @@ for x in cur:
     if response1.status_code == 200:
         items = json.loads(response2)['items']
         for pr in items:
+            pr['mentee'] = username
+            # add the username of the mentee to the pull so that we can identify who is mentioned
             pr_json = json.dumps(pr, indent=4)
             print(pr_json)
+            #########################################################
+            #### UNCOMMENT BELOW COMMENT WHEN READY to add to db ####
+            #########################################################
+            # mongo_writer(pr_json)
     else:
         print('Error:', response1.status_code, response1.text)
 # save to object
