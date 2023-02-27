@@ -34,14 +34,14 @@ for x in cur:
         if key == "repo_name":
             repo_name = x[key]
     # grab prs (new)
-    pr_url = f"https://api.github.com/search/issues?q=mentions:{username}+repo:{owner_name}/{repo_name}+type:pr"
+    pr_url = f"https://api.github.com/search/issues?q=mentions:{username}+repo:{owner_name}/{repo_name}+is:closed+type:pr"
     # send get request
     response2 = requests.get(pr_url, auth=(me_user,token)).text
     response1 = requests.get(pr_url, auth=(me_user,token))
     if response1.status_code == 200:
         items = json.loads(response2)['items']
         for pr in items:
-            pr['mentee'] = username
+            pr['mentee_name'] = username
             pr['owner_name'] = owner_name
             pr['repo_name'] = repo_name
             # add the username of the mentee to the pull so that we can identify who is mentioned

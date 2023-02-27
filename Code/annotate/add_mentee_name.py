@@ -17,11 +17,3 @@ for coll in db.list_collection_names():
     print(id_num)
     Collection.update_one({'_id':id_num}, {"$set": {"mentee": True}})
     Collection.update_one({'_id':id_num}, {"$set": {"mentor": False}})
-
-# go to each of the files and add the mentee: mentor: pr/issue: comment: fields
-# Collection.update_one({'_id':object_nums[0]}, {"$set": {"mentee": True}})
-
-    # print("db: {}, collection:{}".format(db, coll))
-    # for r in db[coll].find({}):
-    #    print(r)
-    #    print('\n\n')
