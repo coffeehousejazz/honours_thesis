@@ -2,9 +2,9 @@ import requests, json, time
 from pymongo import MongoClient
 # this code puts the pulls from users in the db
 myclient = MongoClient("mongodb+srv://HonourThesis:XZJXwB8NNdHIoxGw@cluster0.no1barz.mongodb.net/test")
-db = myclient["GSoC21"]
+db = myclient["GSoC"]
 src_col = db["Users"]
-dst_col = db["Pulls1"]
+dst_col = db["Pulls"]
 # db redesign
 
 # API AUTHENTICATION
@@ -40,11 +40,17 @@ for x in cur:
     response2 = requests.get(pr_url, auth=(me_user,token)).text
     response1 = requests.get(pr_url, auth=(me_user,token))
     
-    if response1.status_code == 403:
+    while response1.status_code == 403:
         print('Error:', response1.status_code, response1.text)
-        time.sleep(15)
+        time.sleep(60)
+        print("waiting 60 seconds")
+        response2 = requests.get(pr_url, auth=(me_user,token)).text
+        response1 = requests.get(pr_url, auth=(me_user,token))
+        print("reached 11111111")
+    print("reached 222222222")
     if response1.status_code == 200:
         items = json.loads(response2)['items']
+        print(type(items))
         for pr in items:
             counter+=1
             pr['mentee_name'] = username
