@@ -4,7 +4,7 @@ from pymongo import MongoClient
 myclient = MongoClient("mongodb+srv://HonourThesis:XZJXwB8NNdHIoxGw@cluster0.no1barz.mongodb.net/test")
 db = myclient["GSoC"]
 src_col = db["Users"]
-dst_col = db["Pulls"]
+dst_col = db["PullsREAL"]
 # db redesign
 
 # API AUTHENTICATION
@@ -35,7 +35,7 @@ for x in cur:
         if key == "repo_name":
             repo_name = x[key]
     # grab prs (new)
-    pr_url = f"https://api.github.com/search/issues?q=mentions:{username}+repo:{owner_name}/{repo_name}+is:closed+type:pr"
+    pr_url = f"https://api.github.com/search/issues?q=type:pr+repo:{owner_name}/{repo_name}+involves:{username}"
     # send get request
     response2 = requests.get(pr_url, auth=(me_user,token)).text
     response1 = requests.get(pr_url, auth=(me_user,token))

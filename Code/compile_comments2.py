@@ -3,8 +3,8 @@ from pymongo import MongoClient
 ## this code gets the comments from pull requests
 myclient = MongoClient("mongodb+srv://HonourThesis:XZJXwB8NNdHIoxGw@cluster0.no1barz.mongodb.net/test")
 db = myclient["GSoC"]
-src_col = db["Pulls"]
-dst_col = db["Comments"]
+src_col = db["PullsREAL"]
+dst_col = db["CommentsREAL"]
 
 # API AUTHENTICATION
 me_user = 'coffeehousejazz'
